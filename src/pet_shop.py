@@ -55,3 +55,7 @@ def add_pet_to_customer(customer_name, new_pet):
     customer_name["pets"].append(new_pet["name"])
     return len(customer_name["pets"])
     
+def customer_can_afford_pet(customer, pet):
+    if customer["cash"] >= pet["price"]:
+        return True
+    return False
