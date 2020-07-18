@@ -60,15 +60,12 @@ def customer_can_afford_pet(customer, pet):
     return False
 
 def sell_pet_to_customer(pet_shop, pet, customer):
-    if pet not in pet_shop["pets"]:
-        pass
-    elif customer["cash"] < pet["price"]:
-        pass
-    else:
+    if pet in pet_shop["pets"] and customer["cash"] >= pet["price"]:
         add_pet_to_customer(customer, pet)
         increase_pets_sold(pet_shop, get_customer_pet_count(customer))
         remove_customer_cash(customer, pet["price"])
         add_or_remove_cash(pet_shop, pet["price"])
+       
     
    
 
