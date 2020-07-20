@@ -31,7 +31,6 @@ def find_pet_by_name(pet_shop, name):
     for pet in pet_shop["pets"]:
         if name == pet["name"]:
             return pet
-    return None
 
 def remove_pet_by_name(pet_shop, name):
     pet_to_remove = find_pet_by_name(pet_shop, name)
@@ -55,12 +54,12 @@ def add_pet_to_customer(customer_name, new_pet):
     return len(customer_name["pets"])
     
 def customer_can_afford_pet(customer, pet):
-    if customer["cash"] >= pet["price"]:
-        return True
-    return False
+    return customer["cash"] >= pet["price"]
+       
 
 def sell_pet_to_customer(pet_shop, pet, customer):
     if pet in pet_shop["pets"] and customer["cash"] >= pet["price"]:
+        remove_pet_by_name(pet_shop, pet["name"])
         add_pet_to_customer(customer, pet)
         increase_pets_sold(pet_shop, get_customer_pet_count(customer))
         remove_customer_cash(customer, pet["price"])
